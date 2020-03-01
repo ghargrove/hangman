@@ -1,11 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 
-import { storiesOf } from '@storybook/react';
-import { range } from 'lodash';
 import { Hangman } from './Hangman';
+import { range } from 'lodash';
+import { storiesOf } from '@storybook/react';
 
 const HangmanContainer = props => {
   return <div {...props} style={{ width: '350px', ...props.style }}></div>;
+};
+
+HangmanContainer.propTypes = {
+  style: PropTypes.object,
 };
 
 const HangmanCycle = () => {
@@ -16,7 +21,9 @@ const HangmanCycle = () => {
   useEffect(() => {
     timeoutRef.current = setTimeout(() => {
       const nextIndex = currentGuessCountIndex + 1;
-      setCurrentGuessCountIndex(nextIndex > guessCounts.length - 1 ? 0 : nextIndex);
+      setCurrentGuessCountIndex(
+        nextIndex > guessCounts.length - 1 ? 0 : nextIndex
+      );
     }, 500);
 
     return () => clearInterval(timeoutRef.current);
