@@ -41,7 +41,8 @@
       "plugin:react/recommended"
     ],
     "plugins": [
-      "react"
+      "react",
+      "prettier"
     ],
     "parserOptions": {
       "ecmaFeatures": {
