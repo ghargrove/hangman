@@ -4,7 +4,7 @@
  * @param {{ selectedLetters: string[], unknownWordLetters: string[]}} lettersObj Object that contains the users selected letters and unknown words letters
  * @returns {Object} Object containing guess information
  */
-export const letterGuessCounts = ({ selectedLetters, unknownWordLetters }) => {
+export const guessStats = ({ selectedLetters, unknownWordLetters }) => {
   const totalAllowedGuesses = 10;
   const numberOfCorrectGuesses = selectedLetters.filter(letter =>
     unknownWordLetters.includes(letter)
@@ -13,9 +13,9 @@ export const letterGuessCounts = ({ selectedLetters, unknownWordLetters }) => {
     selectedLetters.length - numberOfCorrectGuesses;
 
   return {
-    totalAllowedGuesses,
     numberOfCorrectGuesses,
     numberOfGuessesRemaining: totalAllowedGuesses - numberOfIncorrectGuesses,
     numberOfIncorrectGuesses,
+    totalAllowedGuesses,
   };
 };

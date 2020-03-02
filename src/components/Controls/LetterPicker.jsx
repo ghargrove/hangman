@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
 import { useRandomWord } from '../../hooks';
-import { letterGuessCounts } from '../../letterUtilities';
+import { guessStats } from '../../guessHelpers';
 
 const LetterGrid = styled.div`
   cursor: pointer;
@@ -77,7 +77,7 @@ const LetterPicker = ({ onLetterSelection, selectedLetters }) => {
     }
   };
 
-  const { numberOfGuessesRemaining } = letterGuessCounts({
+  const { numberOfGuessesRemaining } = guessStats({
     selectedLetters,
     unknownWordLetters: randomWord,
   });

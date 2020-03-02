@@ -2,14 +2,14 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import { letterGuessCounts } from '../letterUtilities';
+import { guessStats } from '../guessHelpers';
 import { useRandomWord } from '../hooks';
 import { Hangman } from './Hangman';
 import UnknownWord from './UnknownWord';
 
 const TheGallows = ({ selectedLetters }) => {
   const { randomWord } = useRandomWord();
-  const { numberOfIncorrectGuesses } = letterGuessCounts({
+  const { numberOfIncorrectGuesses } = guessStats({
     selectedLetters,
     unknownWordLetters: randomWord,
   });
