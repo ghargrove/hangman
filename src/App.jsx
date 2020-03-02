@@ -4,8 +4,11 @@ import { ThemeProvider } from 'styled-components';
 import { LetterPicker } from './components/Controls';
 import Layout from './components/Layout';
 import RandomWordProvider from './components/RandomWordProvider';
+import Results from './components/Results';
 import TheGallows from './components/TheGallows';
 import theme from './theme';
+
+import GlobalStyles from './components/GlobalStyles';
 
 const App = () => {
   const [selectedLetters, setSelectedLetters] = useState([]);
@@ -13,11 +16,16 @@ const App = () => {
   // Handle letter selection.
   // Use a set as a safety against adding duplicate letters
   const handleLetterSelection = newLetter =>
-    setSelectedLetters(Array.from(new Set([...selectedLetters, newLetter])));
+    setSelectedLetters(prevLetters =>
+      Array.from(new Set([...prevLetters, newLetter]))
+    );
+
+  const handleGameReset = () => setSelectedLetters([]);
 
   return (
     <RandomWordProvider>
       <ThemeProvider theme={theme}>
+        <GlobalStyles />
         <Layout>
           <TheGallows selectedLetters={selectedLetters} />
           <div>
@@ -26,6 +34,10 @@ const App = () => {
               selectedLetters={selectedLetters}
             />
           </div>
+          <Results
+            onReset={handleGameReset}
+            selectedLetters={selectedLetters}
+          />
         </Layout>
       </ThemeProvider>
     </RandomWordProvider>

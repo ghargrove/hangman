@@ -5,6 +5,7 @@ import styled, { css } from 'styled-components';
 
 import { useRandomWord } from '../../hooks';
 import { guessStats } from '../../guessHelpers';
+import { PrimaryHeadline } from '../Generic';
 
 const LetterGrid = styled.div`
   cursor: pointer;
@@ -58,10 +59,11 @@ const Letter = styled.div`
     `}
 `;
 
-const LetterPickerHeadline = styled.div`
+const LetterPickerHeader = styled.header`
   align-items: center;
   display: flex;
   justify-content: space-between;
+  margin-bottom: ${props => props.theme.spacing.medium};
 `;
 
 const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
@@ -84,10 +86,10 @@ const LetterPicker = ({ onLetterSelection, selectedLetters }) => {
 
   return (
     <div style={{ padding: '1rem' }}>
-      <LetterPickerHeadline>
-        <h2>Choose a letter:</h2>
+      <LetterPickerHeader>
+        <PrimaryHeadline>Choose a letter:</PrimaryHeadline>
         <span>Remaining guesses: {numberOfGuessesRemaining}</span>
-      </LetterPickerHeadline>
+      </LetterPickerHeader>
       <LetterGrid>
         {alpha.map((letter, i) => (
           <Letter
