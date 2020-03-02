@@ -3,8 +3,8 @@ import { ThemeProvider } from 'styled-components';
 
 import { LetterPicker } from './components/Controls';
 import Layout from './components/Layout';
-import TheGallows from './components/TheGallows';
 import RandomWordProvider from './components/RandomWordProvider';
+import TheGallows from './components/TheGallows';
 import theme from './theme';
 
 const App = () => {
@@ -12,12 +12,8 @@ const App = () => {
 
   // Handle letter selection.
   // Use a set as a safety against adding duplicate letters
-  const handleLetterSelection = newLetter => {
-    const letterSet = new Set(selectedLetters);
-    letterSet.add(newLetter);
-    console.warn(letterSet);
-    setSelectedLetters(Array.from(letterSet));
-  };
+  const handleLetterSelection = newLetter =>
+    setSelectedLetters(Array.from(new Set([...selectedLetters, newLetter])));
 
   return (
     <RandomWordProvider>
