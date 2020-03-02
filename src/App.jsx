@@ -28,7 +28,7 @@ const App = () => {
             <h1>React Hangman</h1>
             <div style={{ width: '200px', height: '200px' }}>
               <Hangman incorrectGuessCount={10}></Hangman>
-              <RandomWord knownLetters={selectedLetters} />
+              <RandomWord selectedLetters={selectedLetters} />
             </div>
           </div>
           <div>
