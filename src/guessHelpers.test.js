@@ -34,3 +34,11 @@ it('returns the number of possible guesses', () => {
   });
   expect(totalAllowedGuesses).toEqual(totalAllowedGuesses);
 });
+
+it('returns the number of unknown letters', () => {
+  const { numberOfUnknownLetters } = guessStats({
+    selectedLetters,
+    unknownWordLetters,
+  });
+  expect(numberOfUnknownLetters).toEqual(3);
+});
