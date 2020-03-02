@@ -5,7 +5,7 @@
 const theme = {
   colors: {
     gray: {
-      lighest: '#EFEFEF',
+      lightest: '#EFEFEF',
       lighter: '#A1A1A1',
       light: '#A69FAD',
       middle: '#847E89',
@@ -14,7 +14,18 @@ const theme = {
       darkest: '#181719',
     },
   },
+  fontSize: {
+    medium: '1rem',
+    large: '2rem',
+    xlarge: '3rem',
+  },
   name: 'default',
+  spacing: {
+    medium: '1rem',
+    large: '2rem',
+    xlarge: '4rem',
+    xxlarge: '4rem',
+  },
 };
 
 export default theme;

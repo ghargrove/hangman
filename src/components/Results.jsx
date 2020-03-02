@@ -5,9 +5,8 @@ import styled from 'styled-components';
 
 import { guessStats } from '../guessHelpers';
 import { useRandomWord } from '../hooks';
-import { Button } from './Controls';
 import Modal from './Modal';
-import { PrimaryHeadline, SecondaryText } from './Text';
+import { Button, PrimaryHeadline, SecondaryText } from './Generic';
 
 const ResultsWrapper = styled.div`
   display: flex;

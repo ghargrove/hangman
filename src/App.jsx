@@ -16,9 +16,11 @@ const App = () => {
   // Handle letter selection.
   // Use a set as a safety against adding duplicate letters
   const handleLetterSelection = newLetter =>
-    setSelectedLetters(Array.from(new Set([...selectedLetters, newLetter])));
+    setSelectedLetters(prevLetters =>
+      Array.from(new Set([...prevLetters, newLetter]))
+    );
 
-  const handleResultReset = () => setSelectedLetters([]);
+  const handleGameReset = () => setSelectedLetters([]);
 
   return (
     <RandomWordProvider>
@@ -33,7 +35,7 @@ const App = () => {
             />
           </div>
           <Results
-            onReset={handleResultReset}
+            onReset={handleGameReset}
             selectedLetters={selectedLetters}
           />
         </Layout>

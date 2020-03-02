@@ -1,8 +1,21 @@
 import React from 'react';
 
 import PropsTypes from 'prop-types';
+import styled, { css } from 'styled-components';
 
+import { PrimaryText } from '../components/Generic';
 import { useRandomWord } from '../hooks';
+
+const UnknownWordText = styled(PrimaryText)`
+  background-color: white;
+  text-align: center;
+
+  ${({ theme: { fontSize, spacing } }) => css`
+    font-size: ${fontSize.xlarge};
+    letter-spacing: ${spacing.medium};
+    padding: ${spacing.medium};
+  `}
+`;
 
 /**
  * Displays an unknown random word w/ dashes rendered for letters
@@ -16,13 +29,11 @@ import { useRandomWord } from '../hooks';
 const UnknownWord = ({ selectedLetters }) => {
   const { randomWord } = useRandomWord();
   return (
-    <div>
-      {randomWord.map((letter, i) => (
-        <span key={i} style={{ padding: '4px' }}>
-          {selectedLetters.includes(letter) ? letter : '-'}
-        </span>
-      ))}
-    </div>
+    <UnknownWordText>
+      {randomWord
+        .map(letter => (selectedLetters.includes(letter) ? letter : '-'))
+        .join('')}
+    </UnknownWordText>
   );
 };
 
