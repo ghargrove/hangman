@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { Hangman } from './components';
 import { LetterPicker } from './components/Controls';
 import Layout from './components/Layout';
-import RandomWord from './components/RandomWord';
+import UnknownWord from './components/UnknownWord';
 import RandomWordProvider from './components/RandomWordProvider';
 import theme from './theme';
 
@@ -28,7 +28,7 @@ const App = () => {
             <h1>React Hangman</h1>
             <div style={{ width: '200px', height: '200px' }}>
               <Hangman incorrectGuessCount={10}></Hangman>
-              <RandomWord selectedLetters={selectedLetters} />
+              <UnknownWord selectedLetters={selectedLetters} />
             </div>
           </div>
           <div>

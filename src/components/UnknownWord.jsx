@@ -5,15 +5,15 @@ import PropsTypes from 'prop-types';
 import { useRandomWord } from '../hooks';
 
 /**
- * Displays a random word w/ dashes rendered for letters
+ * Displays an unknown random word w/ dashes rendered for letters
  * not included in `selectedLetters`
  *
  * ```javascript
- * <RandomWord selectedLetters=['a', 'f', 'm'] />
+ * <UnknownWord selectedLetters=['a', 'f', 'm'] />
  * ```
  *
  */
-const RandomWord = ({ selectedLetters }) => {
+const UnknownWord = ({ selectedLetters }) => {
   const { randomWord } = useRandomWord();
 
   return (
@@ -27,8 +27,8 @@ const RandomWord = ({ selectedLetters }) => {
   );
 };
 
-RandomWord.propTypes = {
+UnknownWord.propTypes = {
   selectedLetters: PropsTypes.arrayOf(PropsTypes.string).isRequired,
 };
 
-export default RandomWord;
+export default UnknownWord;
