@@ -4,10 +4,11 @@ import { ThemeProvider } from 'styled-components';
 import { LetterPicker } from './components/Controls';
 import Layout from './components/Layout';
 import RandomWordProvider from './components/RandomWordProvider';
+import Results from './components/Results';
 import TheGallows from './components/TheGallows';
 import theme from './theme';
 
-import Results from './components/Results';
+import GlobalStyles from './components/GlobalStyles';
 
 const App = () => {
   const [selectedLetters, setSelectedLetters] = useState([]);
@@ -22,6 +23,7 @@ const App = () => {
   return (
     <RandomWordProvider>
       <ThemeProvider theme={theme}>
+        <GlobalStyles />
         <Layout>
           <TheGallows selectedLetters={selectedLetters} />
           <div>
