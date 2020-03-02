@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { ThemeProvider } from 'styled-components';
+
 import { Hangman } from './components';
-
+import { LetterPicker } from './components/Controls';
+import Layout from './components/Layout';
 import RandomWord from './components/RandomWord';
-
-import './App.css';
+import theme from './theme';
 
 const App = () => {
   const alpha = 'abcdefghijklmnopqrstuvwxyz';
@@ -25,13 +27,20 @@ const App = () => {
   });
 
   return (
-    <div className="App">
-      <div className="container">
-        <h1>React Hangman</h1>
-        <Hangman incorrectGuessCount={10}></Hangman>
-        <RandomWord knownLetters={selectedLetters} />
-      </div>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Layout>
+        <div style={{ backgroundColor: 'yellow' }}>
+          <h1>React Hangman</h1>
+          <div style={{ width: '200px', height: '200px' }}>
+            <Hangman incorrectGuessCount={10}></Hangman>
+            <RandomWord knownLetters={selectedLetters} />
+          </div>
+        </div>
+        <div>
+          <LetterPicker />
+        </div>
+      </Layout>
+    </ThemeProvider>
   );
 };
 
