@@ -48,7 +48,29 @@ const Letter = styled.div`
     `}
 `;
 
+const LetterPickerHeadline = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+`;
+
 const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+
+const letterGuessCounts = ({ selectedLetters, unknownWordLetters }) => {
+  const totalAllowedGuesses = 10;
+  const numberOfCorrectGuesses = selectedLetters.filter(letter =>
+    unknownWordLetters.includes(letter)
+  ).length;
+  const numberOfIncorrectGuesses =
+    selectedLetters.length - numberOfCorrectGuesses;
+
+  return {
+    totalAllowedGuesses,
+    numberOfCorrectGuesses,
+    numberOfGuessesRemaining: totalAllowedGuesses - numberOfIncorrectGuesses,
+    numberOfIncorrectGuesses,
+  };
+};
 
 const LetterPicker = ({ onLetterSelection, selectedLetters }) => {
   const { randomWord } = useRandomWord();
@@ -57,9 +79,17 @@ const LetterPicker = ({ onLetterSelection, selectedLetters }) => {
   const handleLetterClick = ({ target: { textContent } }) =>
     onLetterSelection(textContent.trim());
 
+  const { numberOfGuessesRemaining } = letterGuessCounts({
+    selectedLetters,
+    unknownWordLetters: randomWord,
+  });
+
   return (
     <div style={{ padding: '1rem' }}>
-      <h2>Choose a letter:</h2>
+      <LetterPickerHeadline>
+        <h2>Choose a letter:</h2>
+        <span>Remaining guesses: {numberOfGuessesRemaining}</span>
+      </LetterPickerHeadline>
       <LetterGrid>
         {alpha.map((letter, i) => (
           <Letter
