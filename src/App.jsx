@@ -5,6 +5,7 @@ import { Hangman } from './components';
 import { LetterPicker } from './components/Controls';
 import Layout from './components/Layout';
 import RandomWord from './components/RandomWord';
+import RandomWordProvider from './components/RandomWordProvider';
 import theme from './theme';
 
 const App = () => {
@@ -20,23 +21,25 @@ const App = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Layout>
-        <div style={{ backgroundColor: 'yellow' }}>
-          <h1>React Hangman</h1>
-          <div style={{ width: '200px', height: '200px' }}>
-            <Hangman incorrectGuessCount={10}></Hangman>
-            <RandomWord knownLetters={selectedLetters} />
+    <RandomWordProvider>
+      <ThemeProvider theme={theme}>
+        <Layout>
+          <div style={{ backgroundColor: 'yellow' }}>
+            <h1>React Hangman</h1>
+            <div style={{ width: '200px', height: '200px' }}>
+              <Hangman incorrectGuessCount={10}></Hangman>
+              <RandomWord knownLetters={selectedLetters} />
+            </div>
           </div>
-        </div>
-        <div>
-          <LetterPicker
-            onLetterSelection={handleLetterSelection}
-            selectedLetters={selectedLetters}
-          />
-        </div>
-      </Layout>
-    </ThemeProvider>
+          <div>
+            <LetterPicker
+              onLetterSelection={handleLetterSelection}
+              selectedLetters={selectedLetters}
+            />
+          </div>
+        </Layout>
+      </ThemeProvider>
+    </RandomWordProvider>
   );
 };
 
