@@ -7,6 +7,7 @@ import memoizeOne from 'memoize-one';
  * @returns {Object} Object containing guess information
  */
 const calculateGuessStats = ({ selectedLetters, unknownWordLetters }) => {
+  console.warn('Called');
   const totalAllowedGuesses = 10;
   const numberOfCorrectGuesses = selectedLetters.filter(letter =>
     unknownWordLetters.includes(letter)
@@ -26,7 +27,13 @@ const calculateGuessStats = ({ selectedLetters, unknownWordLetters }) => {
   };
 };
 
+// Equality function for determining if the selected letters changed
+const areSelectedLettersEqual = (
+  [{ selectedLetters: incomingSelectedLetters }],
+  [{ selectedLetters: lastSelectedLetters }]
+) => incomingSelectedLetters === lastSelectedLetters;
+
 export const guessStats = memoizeOne(
   calculateGuessStats,
-  (a, b) => a.selectedLetters === b.selectedLetters
+  areSelectedLettersEqual
 );
