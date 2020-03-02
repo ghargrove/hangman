@@ -7,6 +7,8 @@ import RandomWordProvider from './components/RandomWordProvider';
 import TheGallows from './components/TheGallows';
 import theme from './theme';
 
+import Results from './components/Results';
+
 const App = () => {
   const [selectedLetters, setSelectedLetters] = useState([]);
 
@@ -14,6 +16,8 @@ const App = () => {
   // Use a set as a safety against adding duplicate letters
   const handleLetterSelection = newLetter =>
     setSelectedLetters(Array.from(new Set([...selectedLetters, newLetter])));
+
+  const handleResultReset = () => setSelectedLetters([]);
 
   return (
     <RandomWordProvider>
@@ -26,6 +30,10 @@ const App = () => {
               selectedLetters={selectedLetters}
             />
           </div>
+          <Results
+            onReset={handleResultReset}
+            selectedLetters={selectedLetters}
+          />
         </Layout>
       </ThemeProvider>
     </RandomWordProvider>
