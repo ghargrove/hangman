@@ -23,14 +23,12 @@ const Results = ({ selectedLetters, onReset }) => {
   });
 
   const didWin = numberOfUnknownLetters === 0;
-  let didLose = numberOfGuessesRemaining === 0;
+  const didLose = numberOfGuessesRemaining === 0;
 
   const handleReset = () => {
     changeRandomWord();
     onReset();
   };
-
-  didLose = true;
 
   return (
     <React.Fragment>

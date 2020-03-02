@@ -6,7 +6,7 @@ const Button = styled.button`
   font-family: 'Catamaran';
   font-size: 1rem;
   font-weight: 700;
-  padding: 1rem 0;
+  padding: 1rem;
   outline: none;
   text-transform: uppercase;
   transition: background 0.3s;

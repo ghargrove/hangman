@@ -14,6 +14,7 @@ const theme = {
       darkest: '#181719',
     },
   },
+  name: 'default',
 };
 
 export default theme;

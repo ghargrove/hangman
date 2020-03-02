@@ -15,7 +15,6 @@ import { useRandomWord } from '../hooks';
  */
 const UnknownWord = ({ selectedLetters }) => {
   const { randomWord } = useRandomWord();
-
   return (
     <div>
       {randomWord.map((letter, i) => (
