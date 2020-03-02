@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
 import { useRandomWord } from '../../hooks';
+import { guessStats } from '../../guessHelpers';
 
 const LetterGrid = styled.div`
   cursor: pointer;
@@ -33,6 +34,15 @@ const Letter = styled.div`
       }
     `}
   
+  /* If either are true then the letter has already been selected */
+  ${({ existsInRandomWord, missingFromRandomWord }) =>
+    (existsInRandomWord || missingFromRandomWord) &&
+    css`
+      :hover {
+        cursor: not-allowed;
+      }
+    `}
+  
   ${({ existsInRandomWord }) =>
     existsInRandomWord &&
     css`
@@ -48,18 +58,36 @@ const Letter = styled.div`
     `}
 `;
 
+const LetterPickerHeadline = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+`;
+
 const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
 const LetterPicker = ({ onLetterSelection, selectedLetters }) => {
   const { randomWord } = useRandomWord();
 
   // Click handler for `<Letter>`
-  const handleLetterClick = ({ target: { textContent } }) =>
-    onLetterSelection(textContent.trim());
+  const handleLetterClick = ({ target: { textContent } }) => {
+    const letter = textContent.trim();
+    if (!selectedLetters.includes(letter)) {
+      onLetterSelection(letter);
+    }
+  };
+
+  const { numberOfGuessesRemaining } = guessStats({
+    selectedLetters,
+    unknownWordLetters: randomWord,
+  });
 
   return (
     <div style={{ padding: '1rem' }}>
-      <h2>Choose a letter:</h2>
+      <LetterPickerHeadline>
+        <h2>Choose a letter:</h2>
+        <span>Remaining guesses: {numberOfGuessesRemaining}</span>
+      </LetterPickerHeadline>
       <LetterGrid>
         {alpha.map((letter, i) => (
           <Letter

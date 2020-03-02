@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import { Hangman } from './components';
 import { LetterPicker } from './components/Controls';
 import Layout from './components/Layout';
-import UnknownWord from './components/UnknownWord';
 import RandomWordProvider from './components/RandomWordProvider';
+import TheGallows from './components/TheGallows';
 import theme from './theme';
 
 const App = () => {
@@ -13,24 +12,14 @@ const App = () => {
 
   // Handle letter selection.
   // Use a set as a safety against adding duplicate letters
-  const handleLetterSelection = newLetter => {
-    const letterSet = new Set(selectedLetters);
-    letterSet.add(newLetter);
-    console.warn(letterSet);
-    setSelectedLetters(Array.from(letterSet));
-  };
+  const handleLetterSelection = newLetter =>
+    setSelectedLetters(Array.from(new Set([...selectedLetters, newLetter])));
 
   return (
     <RandomWordProvider>
       <ThemeProvider theme={theme}>
         <Layout>
-          <div style={{ backgroundColor: 'yellow' }}>
-            <h1>React Hangman</h1>
-            <div style={{ width: '200px', height: '200px' }}>
-              <Hangman incorrectGuessCount={10}></Hangman>
-              <UnknownWord selectedLetters={selectedLetters} />
-            </div>
-          </div>
+          <TheGallows selectedLetters={selectedLetters} />
           <div>
             <LetterPicker
               onLetterSelection={handleLetterSelection}
