@@ -33,6 +33,15 @@ const Letter = styled.div`
       }
     `}
   
+  /* If either are true then the letter has already been selected */
+  ${({ existsInRandomWord, missingFromRandomWord }) =>
+    (existsInRandomWord || missingFromRandomWord) &&
+    css`
+      :hover {
+        cursor: not-allowed;
+      }
+    `}
+  
   ${({ existsInRandomWord }) =>
     existsInRandomWord &&
     css`
@@ -76,8 +85,12 @@ const LetterPicker = ({ onLetterSelection, selectedLetters }) => {
   const { randomWord } = useRandomWord();
 
   // Click handler for `<Letter>`
-  const handleLetterClick = ({ target: { textContent } }) =>
-    onLetterSelection(textContent.trim());
+  const handleLetterClick = ({ target: { textContent } }) => {
+    const letter = textContent.trim();
+    if (!selectedLetters.includes(letter)) {
+      onLetterSelection(letter);
+    }
+  };
 
   const { numberOfGuessesRemaining } = letterGuessCounts({
     selectedLetters,
