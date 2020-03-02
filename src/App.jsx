@@ -30,7 +30,10 @@ const App = () => {
           </div>
         </div>
         <div>
-          <LetterPicker onLetterSelection={handleLetterSelection} />
+          <LetterPicker
+            onLetterSelection={handleLetterSelection}
+            selectedLetters={selectedLetters}
+          />
         </div>
       </Layout>
     </ThemeProvider>
