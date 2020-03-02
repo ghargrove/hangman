@@ -11,7 +11,7 @@ const LetterGrid = styled.div`
   cursor: pointer;
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 `;
 
 const Letter = styled.div`
@@ -20,18 +20,18 @@ const Letter = styled.div`
   box-shadow: 2px 2px 5px #c9c9c9;
   color: #181719;
   font-family: 'Catamaran';
-  font-size: 3rem;
+  font-size: 2rem;
   text-align: center;
   transition: background 0.3s, color 0.3s;
 
   /* If both props are false then the letter has not been chosen yet */
-  ${({ existsInRandomWord, missingFromRandomWord }) =>
+  ${({ existsInRandomWord, missingFromRandomWord, theme }) =>
     !existsInRandomWord &&
     !missingFromRandomWord &&
     css`
       :hover {
         background-color: #f9f9f9;
-        color: green;
+        color: ${theme.colors.green};
       }
     `}
   
@@ -44,10 +44,10 @@ const Letter = styled.div`
       }
     `}
   
-  ${({ existsInRandomWord }) =>
+  ${({ existsInRandomWord, theme }) =>
     existsInRandomWord &&
     css`
-      background-color: green;
+      background-color: ${theme.colors.green};
       color: white;
     `}
 

@@ -4,6 +4,7 @@
 
 const theme = {
   colors: {
+    primary: '#2D99C4',
     gray: {
       lightest: '#EFEFEF',
       lighter: '#A1A1A1',
@@ -13,6 +14,7 @@ const theme = {
       darker: '#38353A',
       darkest: '#181719',
     },
+    green: '#2DC464',
   },
   fontSize: {
     medium: '1rem',
