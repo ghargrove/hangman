@@ -1,28 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import PropsTypes from 'prop-types';
-import randomWords from 'random-words';
+
+import { useRandomWord } from '../hooks';
 
 /**
  * Displays a random word w/ dashes rendered for letters
- * not included in `knownLetters`
+ * not included in `selectedLetters`
  *
  * ```javascript
- * <RandomWord knownLetters=['a', 'f', 'm'] />
+ * <RandomWord selectedLetters=['a', 'f', 'm'] />
  * ```
  *
  */
-const RandomWord = ({ knownLetters }) => {
-  const [randomWordLetters] = useState(
-    randomWords()
-      .toUpperCase()
-      .split('')
-  );
+const RandomWord = ({ selectedLetters }) => {
+  const { randomWord } = useRandomWord();
+  const randomWordLetters = randomWord.toUpperCase().split('');
+
   return (
     <div>
       {randomWordLetters.map((letter, i) => (
         <span key={i} style={{ padding: '4px' }}>
-          {knownLetters.includes(letter) ? letter : '-'}
+          {selectedLetters.includes(letter) ? letter : '-'}
         </span>
       ))}
     </div>
@@ -30,7 +29,7 @@ const RandomWord = ({ knownLetters }) => {
 };
 
 RandomWord.propTypes = {
-  knownLetters: PropsTypes.arrayOf(PropsTypes.string),
+  selectedLetters: PropsTypes.arrayOf(PropsTypes.string).isRequired,
 };
 
 export default RandomWord;

@@ -8,7 +8,7 @@ export const RandomWordContext = React.createContext();
 
 const RandomWordProvider = ({ children }) => {
   const [randomWord, setRandomWord] = useState(randomWords());
-  const changeRandomWord = setRandomWord(randomWords());
+  const changeRandomWord = () => setRandomWord(randomWords());
 
   return (
     <RandomWordContext.Provider

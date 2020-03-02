@@ -7,8 +7,8 @@ export default {
   title: 'Random word',
 };
 
-export const randomWord = () => <RandomWord knownLetters={[]} />;
+export const randomWord = () => <RandomWord selectedLetters={[]} />;
 
 export const filledWord = () => (
-  <RandomWord knownLetters={'abcdefghijklmnopqrstuvwxyz'.split('')} />
+  <RandomWord selectedLetters={'abcdefghijklmnopqrstuvwxyz'.split('')} />
 );
