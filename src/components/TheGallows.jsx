@@ -12,7 +12,6 @@ const GallowsContainer = styled.div`
   ${({ theme: { colors, spacing } }) => css`
     background-color: ${colors.gray.lightest};
     padding: ${spacing.medium};
-    margin-right: ${spacing.xxlarge};
   `}
 `;
 
