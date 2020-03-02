@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import { Hangman } from './Hangman';
 import { range } from 'lodash';
-import { storiesOf } from '@storybook/react';
 
 const HangmanContainer = props => {
   return <div {...props} style={{ width: '350px', ...props.style }}></div>;
@@ -38,21 +37,27 @@ const HangmanCycle = () => {
   );
 };
 
-storiesOf('Hangman', module)
-  .add('Default State', () => {
-    return (
-      <HangmanContainer>
-        <Hangman incorrectGuessCount={0}></Hangman>
-      </HangmanContainer>
-    );
-  })
-  .add('Parts Drawn', () => {
-    return (
-      <HangmanContainer>
-        <Hangman incorrectGuessCount={7}></Hangman>
-      </HangmanContainer>
-    );
-  })
-  .add('Cycle', () => {
-    return <HangmanCycle></HangmanCycle>;
-  });
+export default {
+  component: Hangman,
+  title: 'Hangman',
+};
+
+export const defaultState = () => {
+  return (
+    <HangmanContainer>
+      <Hangman incorrectGuessCount={0}></Hangman>
+    </HangmanContainer>
+  );
+};
+
+export const partsDrawn = () => {
+  return (
+    <HangmanContainer>
+      <Hangman incorrectGuessCount={7}></Hangman>
+    </HangmanContainer>
+  );
+};
+
+export const cycle = () => {
+  return <HangmanCycle></HangmanCycle>;
+};
