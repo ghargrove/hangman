@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import { Hangman } from './components';
 import { LetterPicker } from './components/Controls';
 import Layout from './components/Layout';
-import UnknownWord from './components/UnknownWord';
+import TheGallows from './components/TheGallows';
 import RandomWordProvider from './components/RandomWordProvider';
 import theme from './theme';
 
@@ -24,13 +23,7 @@ const App = () => {
     <RandomWordProvider>
       <ThemeProvider theme={theme}>
         <Layout>
-          <div style={{ backgroundColor: 'yellow' }}>
-            <h1>React Hangman</h1>
-            <div style={{ width: '200px', height: '200px' }}>
-              <Hangman incorrectGuessCount={10}></Hangman>
-              <UnknownWord selectedLetters={selectedLetters} />
-            </div>
-          </div>
+          <TheGallows selectedLetters={selectedLetters} />
           <div>
             <LetterPicker
               onLetterSelection={handleLetterSelection}

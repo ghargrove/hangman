@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
 import { useRandomWord } from '../../hooks';
+import { letterGuessCounts } from '../../letterUtilities';
 
 const LetterGrid = styled.div`
   cursor: pointer;
@@ -64,22 +65,6 @@ const LetterPickerHeadline = styled.div`
 `;
 
 const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-
-const letterGuessCounts = ({ selectedLetters, unknownWordLetters }) => {
-  const totalAllowedGuesses = 10;
-  const numberOfCorrectGuesses = selectedLetters.filter(letter =>
-    unknownWordLetters.includes(letter)
-  ).length;
-  const numberOfIncorrectGuesses =
-    selectedLetters.length - numberOfCorrectGuesses;
-
-  return {
-    totalAllowedGuesses,
-    numberOfCorrectGuesses,
-    numberOfGuessesRemaining: totalAllowedGuesses - numberOfIncorrectGuesses,
-    numberOfIncorrectGuesses,
-  };
-};
 
 const LetterPicker = ({ onLetterSelection, selectedLetters }) => {
   const { randomWord } = useRandomWord();
