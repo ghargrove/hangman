@@ -6,10 +6,15 @@ import randomWords from 'random-words';
 // Store the random word
 export const RandomWordContext = React.createContext();
 
-const RandomWordProvider = ({ children }) => {
-  const [randomWord, setRandomWord] = useState(randomWords());
-  const changeRandomWord = () => setRandomWord(randomWords());
+// Get a random word and split into an array of uppercase letters
+const randomWordLetters = () =>
+  randomWords()
+    .toUpperCase()
+    .split('');
 
+const RandomWordProvider = ({ children }) => {
+  const [randomWord, setRandomWord] = useState(randomWordLetters());
+  const changeRandomWord = () => setRandomWord(randomWordLetters());
   return (
     <RandomWordContext.Provider
       value={{

@@ -15,11 +15,10 @@ import { useRandomWord } from '../hooks';
  */
 const RandomWord = ({ selectedLetters }) => {
   const { randomWord } = useRandomWord();
-  const randomWordLetters = randomWord.toUpperCase().split('');
 
   return (
     <div>
-      {randomWordLetters.map((letter, i) => (
+      {randomWord.map((letter, i) => (
         <span key={i} style={{ padding: '4px' }}>
           {selectedLetters.includes(letter) ? letter : '-'}
         </span>

@@ -3,6 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
+import { useRandomWord } from '../../hooks';
+
 const LetterGrid = styled.div`
   cursor: pointer;
   display: grid;
@@ -20,11 +22,17 @@ const Letter = styled.div`
   text-align: center;
   transition: background 0.3s, color 0.3s;
 
-  :hover {
-    background-color: #f9f9f9;
-    color: green;
-  }
-
+  /* If both props are false then the letter has not been chosen yet */
+  ${({ existsInRandomWord, missingFromRandomWord }) =>
+    !existsInRandomWord &&
+    !missingFromRandomWord &&
+    css`
+      :hover {
+        background-color: #f9f9f9;
+        color: green;
+      }
+    `}
+  
   ${({ existsInRandomWord }) =>
     existsInRandomWord &&
     css`
@@ -35,14 +43,16 @@ const Letter = styled.div`
   ${({ missingFromRandomWord }) =>
     missingFromRandomWord &&
     css`
-      background-color: red;
-      color: white;
+      background-color: #efefef;
+      color: #a1a1a1;
     `}
 `;
 
 const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
 const LetterPicker = ({ onLetterSelection, selectedLetters }) => {
+  const { randomWord } = useRandomWord();
+
   // Click handler for `<Letter>`
   const handleLetterClick = ({ target: { textContent } }) =>
     onLetterSelection(textContent.trim());
@@ -54,8 +64,12 @@ const LetterPicker = ({ onLetterSelection, selectedLetters }) => {
         {alpha.map((letter, i) => (
           <Letter
             key={i}
-            existsInRandomWord={false}
-            missingFromRandomWord={false}
+            existsInRandomWord={
+              selectedLetters.includes(letter) && randomWord.includes(letter)
+            }
+            missingFromRandomWord={
+              selectedLetters.includes(letter) && !randomWord.includes(letter)
+            }
             onClick={handleLetterClick}
           >
             {letter}
