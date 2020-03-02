@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 
 import { Hangman } from './components';
@@ -8,23 +8,16 @@ import RandomWord from './components/RandomWord';
 import theme from './theme';
 
 const App = () => {
-  const alpha = 'abcdefghijklmnopqrstuvwxyz';
   const [selectedLetters, setSelectedLetters] = useState([]);
 
-  const updateSelectedLetters = () => {
-    return window.setInterval(() => {
-      const randomIndex = Math.floor(Math.random() * alpha.length + 1) - 1;
-      const newLetter = alpha.split('')[randomIndex];
-      console.warn(randomIndex);
-      console.warn(newLetter);
-      setSelectedLetters([...selectedLetters, newLetter]);
-    }, 3000);
+  // Handle letter selection.
+  // Use a set as a safety against adding duplicate letters
+  const handleLetterSelection = newLetter => {
+    const letterSet = new Set(selectedLetters);
+    letterSet.add(newLetter);
+    console.warn(letterSet);
+    setSelectedLetters(Array.from(letterSet));
   };
-
-  useEffect(() => {
-    const handler = updateSelectedLetters();
-    return () => window.clearInterval(handler);
-  });
 
   return (
     <ThemeProvider theme={theme}>
@@ -37,7 +30,7 @@ const App = () => {
           </div>
         </div>
         <div>
-          <LetterPicker />
+          <LetterPicker onLetterSelection={handleLetterSelection} />
         </div>
       </Layout>
     </ThemeProvider>

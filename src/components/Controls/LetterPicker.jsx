@@ -1,5 +1,6 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 // Need to know
@@ -28,15 +29,27 @@ const LetterGrid = styled.div`
 
 const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
-const LetterPicker = () => (
-  <div style={{ padding: '1rem' }}>
-    <h2>Choose a letter:</h2>
-    <LetterGrid>
-      {alpha.map((a, b) => (
-        <Letter key={b}>{a}</Letter>
-      ))}
-    </LetterGrid>
-  </div>
-);
+const LetterPicker = ({ onLetterSelection }) => {
+  // Click handler for `<Letter>`
+  const handleLetterClick = ({ target: { textContent } }) =>
+    onLetterSelection(textContent.trim());
+
+  return (
+    <div style={{ padding: '1rem' }}>
+      <h2>Choose a letter:</h2>
+      <LetterGrid>
+        {alpha.map((a, b) => (
+          <Letter key={b} onClick={handleLetterClick}>
+            {a}
+          </Letter>
+        ))}
+      </LetterGrid>
+    </div>
+  );
+};
+
+LetterPicker.propTypes = {
+  onLetterSelection: PropTypes.func.isRequired,
+};
 
 export default LetterPicker;

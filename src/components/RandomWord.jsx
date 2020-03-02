@@ -13,7 +13,11 @@ import randomWords from 'random-words';
  *
  */
 const RandomWord = ({ knownLetters }) => {
-  const [randomWordLetters] = useState(randomWords().split(''));
+  const [randomWordLetters] = useState(
+    randomWords()
+      .toUpperCase()
+      .split('')
+  );
   return (
     <div>
       {randomWordLetters.map((letter, i) => (
