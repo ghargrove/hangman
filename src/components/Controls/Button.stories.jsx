@@ -4,7 +4,7 @@ import Button from './Button';
 
 export default {
   component: Button,
-  title: 'Button',
+  title: 'Buttons',
 };
 
-export const basicButton = () => <Button>Start over</Button>;
+export const primaryButton = () => <Button>Start over</Button>;
