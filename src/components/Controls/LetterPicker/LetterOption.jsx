@@ -48,17 +48,4 @@ const LetterOption = styled.div`
     `}
 `;
 
-// const LetterOption = React.memo(props => {
-//   const { children, ...rest } = props;
-//   console.warn(children)
-//   return <Letter {...rest}>{children}</Letter>
-// });
-// LetterOption.displayName = 'LetterOption'
-
-// LetterOption.propTypes = {
-//   children: PropTypes.node.isRequired,
-//   existsInRandomWord: PropTypes.bool.isRequired,
-//   missingFromRandomWord: PropTypes.bool.isR
-// }
-
 export default LetterOption;
