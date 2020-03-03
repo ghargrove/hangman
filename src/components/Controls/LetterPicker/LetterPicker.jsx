@@ -1,71 +1,16 @@
 import React from 'react';
 
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-import { useRandomWord } from '../../hooks';
-import { guessStats } from '../../guessHelpers';
-import { SecondaryText } from '../Generic';
-import { onMediumScreens } from '../Layout';
-
-const LetterGrid = styled.div`
-  cursor: pointer;
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(4, 1fr);
-
-  ${onMediumScreens(css`
-    grid-template-columns: repeat(3, 1fr);
-  `)}
-`;
+import { useRandomWord } from '../../../hooks';
+import { guessStats } from '../../../guessHelpers';
+import { SecondaryText } from '../../Generic';
+import LetterGrid from './LetterGrid';
+import LetterOption from './LetterOption';
 
 const LetterPickerContainer = styled.div`
   padding: ${props => props.theme.spacing.medium};
-`;
-
-const Letter = styled.div`
-  border-top: solid 1px #efefef;
-  border-left: solid 1px #efefef;
-  box-shadow: 2px 2px 5px #c9c9c9;
-  color: #181719;
-  font-family: 'Catamaran';
-  font-size: 2rem;
-  text-align: center;
-  transition: background 0.3s, color 0.3s;
-
-  /* If both props are false then the letter has not been chosen yet */
-  ${({ existsInRandomWord, missingFromRandomWord, theme }) =>
-    !existsInRandomWord &&
-    !missingFromRandomWord &&
-    css`
-      :hover {
-        background-color: #f9f9f9;
-        color: ${theme.colors.green};
-      }
-    `}
-  
-  /* If either are true then the letter has already been selected */
-  ${({ existsInRandomWord, missingFromRandomWord }) =>
-    (existsInRandomWord || missingFromRandomWord) &&
-    css`
-      :hover {
-        cursor: not-allowed;
-      }
-    `}
-  
-  ${({ existsInRandomWord, theme }) =>
-    existsInRandomWord &&
-    css`
-      background-color: ${theme.colors.green};
-      color: white;
-    `}
-
-  ${({ missingFromRandomWord }) =>
-    missingFromRandomWord &&
-    css`
-      background-color: #efefef;
-      color: #a1a1a1;
-    `}
 `;
 
 const RemainingGuessCount = styled(SecondaryText)`
@@ -98,7 +43,7 @@ const LetterPicker = ({ onLetterSelection, selectedLetters }) => {
       </RemainingGuessCount>
       <LetterGrid>
         {alpha.map((letter, i) => (
-          <Letter
+          <LetterOption
             key={i}
             existsInRandomWord={
               selectedLetters.includes(letter) && randomWord.includes(letter)
@@ -109,7 +54,7 @@ const LetterPicker = ({ onLetterSelection, selectedLetters }) => {
             onClick={handleLetterClick}
           >
             {letter}
-          </Letter>
+          </LetterOption>
         ))}
       </LetterGrid>
     </LetterPickerContainer>

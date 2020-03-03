@@ -1,1 +1,1 @@
-export { default as LetterPicker } from './LetterPicker';
+export { default as LetterPicker } from './LetterPicker/LetterPicker';
