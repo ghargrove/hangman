@@ -5,7 +5,7 @@ import { onMediumScreens } from '../../Layout';
 const LetterGrid = styled.div`
   cursor: pointer;
   display: grid;
-  gap: 1rem;
+  gap: ${props => props.theme.spacing.medium};
   grid-template-columns: repeat(4, 1fr);
 
   ${onMediumScreens(css`
