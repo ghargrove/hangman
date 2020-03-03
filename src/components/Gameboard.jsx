@@ -12,6 +12,10 @@ const Gameboard = () => {
   // The value of the object will indicate if the letter was in the unknown word
   // {'A': false, 'E': true}
   const [selectedLetters, setSelectedLetters] = useState({});
+  const [winsAndLosses, setWinsAndLosses] = useState({
+    losses: 0,
+    wins: 0,
+  });
 
   // Handle letter selection
   const handleLetterSelection = newLetter =>
@@ -19,11 +23,23 @@ const Gameboard = () => {
       ...prevLetters,
       ...newLetter,
     }));
-  const handleGameReset = () => setSelectedLetters({});
+  const handleGameReset = didWin => {
+    setWinsAndLosses(prevState => {
+      if (didWin) {
+        return { ...prevState, wins: prevState.wins + 1 };
+      } else {
+        return { ...prevState, losses: prevState.losses + 1 };
+      }
+    });
+    setSelectedLetters({});
+  };
 
   return (
     <React.Fragment>
-      <TheGallows selectedLetters={selectedLetters} />
+      <TheGallows
+        selectedLetters={selectedLetters}
+        winLossRecord={winsAndLosses}
+      />
       <LetterPicker
         onLetterSelection={handleLetterSelection}
         selectedLetters={selectedLetters}

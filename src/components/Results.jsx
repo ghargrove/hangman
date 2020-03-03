@@ -40,7 +40,7 @@ const Results = ({ selectedLetters, onReset }) => {
 
   const handleReset = () => {
     changeRandomWord();
-    onReset();
+    onReset(didWin);
   };
 
   return (
