@@ -10,6 +10,7 @@ const theme = {
     xlarge: 1200,
   },
   colors: {
+    alert: '#E04A4A',
     primary: '#2D99C4',
     gray: {
       lightest: '#EFEFEF',
