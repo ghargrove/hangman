@@ -15,7 +15,6 @@ const LetterPickerContainer = styled.div`
 
 const RemainingGuessCount = styled(SecondaryText)`
   margin-bottom: ${props => props.theme.spacing.medium};
-  text-align: right;
 `;
 
 const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
@@ -23,39 +22,40 @@ const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 const LetterPicker = ({ onLetterSelection, selectedLetters }) => {
   const { randomWord } = useRandomWord();
 
-  // Click handler for `<Letter>`
-  const handleLetterClick = ({ target: { textContent } }) => {
-    const letter = textContent.trim();
-    if (!selectedLetters.includes(letter)) {
-      onLetterSelection(letter);
-    }
-  };
-
   const { numberOfGuessesRemaining } = guessStats({
-    selectedLetters,
+    selectedLetters: Object.keys(selectedLetters),
     unknownWordLetters: randomWord,
   });
 
+  // Click handler for `<Letter>`
+  const handleLetterClick = ({ target: { textContent } }) => {
+    const letter = textContent.trim();
+    if (selectedLetters[letter] === undefined) {
+      onLetterSelection({
+        [letter]: randomWord.includes(letter),
+      });
+    }
+  };
+
   return (
     <LetterPickerContainer>
-      <RemainingGuessCount>
+      <RemainingGuessCount alignRight>
         Remaining guesses: <strong>{numberOfGuessesRemaining}</strong>
       </RemainingGuessCount>
       <LetterGrid>
-        {alpha.map((letter, i) => (
-          <LetterOption
-            key={i}
-            existsInRandomWord={
-              selectedLetters.includes(letter) && randomWord.includes(letter)
-            }
-            missingFromRandomWord={
-              selectedLetters.includes(letter) && !randomWord.includes(letter)
-            }
-            onClick={handleLetterClick}
-          >
-            {letter}
-          </LetterOption>
-        ))}
+        {alpha.map((letter, i) => {
+          const isSelected = selectedLetters[letter] !== undefined;
+          return (
+            <LetterOption
+              key={i}
+              existsInRandomWord={isSelected && selectedLetters[letter]}
+              missingFromRandomWord={isSelected && !selectedLetters[letter]}
+              onClick={handleLetterClick}
+            >
+              {letter}
+            </LetterOption>
+          );
+        })}
       </LetterGrid>
     </LetterPickerContainer>
   );
@@ -63,7 +63,7 @@ const LetterPicker = ({ onLetterSelection, selectedLetters }) => {
 
 LetterPicker.propTypes = {
   onLetterSelection: PropTypes.func.isRequired,
-  selectedLetters: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selectedLetters: PropTypes.objectOf(PropTypes.bool).isRequired,
 };
 
 export default LetterPicker;

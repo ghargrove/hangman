@@ -7,7 +7,6 @@ import memoizeOne from 'memoize-one';
  * @returns {Object} Object containing guess information
  */
 const calculateGuessStats = ({ selectedLetters, unknownWordLetters }) => {
-  console.warn('Called');
   const totalAllowedGuesses = 10;
   const numberOfCorrectGuesses = selectedLetters.filter(letter =>
     unknownWordLetters.includes(letter)

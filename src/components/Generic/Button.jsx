@@ -3,7 +3,6 @@ import styled from 'styled-components';
 const Button = styled.button`
   border: none;
   color: ${props => props.theme.colors.green};
-  font-family: 'Catamaran';
   font-size: ${props => props.theme.fontSize.medium};
   font-weight: 700;
   padding: ${props => props.theme.spacing.medium};

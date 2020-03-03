@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 const LetterOption = styled.div`
   box-shadow: 2px 2px 5px #c9c9c9;
   color: #181719;
-  font-family: 'Catamaran';
+  line-height: 3rem;
   text-align: center;
   transition: background 0.3s, color 0.3s;
 
@@ -47,5 +47,18 @@ const LetterOption = styled.div`
       color: ${theme.colors.gray.lighter};
     `}
 `;
+
+// const LetterOption = React.memo(props => {
+//   const { children, ...rest } = props;
+//   console.warn(children)
+//   return <Letter {...rest}>{children}</Letter>
+// });
+// LetterOption.displayName = 'LetterOption'
+
+// LetterOption.propTypes = {
+//   children: PropTypes.node.isRequired,
+//   existsInRandomWord: PropTypes.bool.isRequired,
+//   missingFromRandomWord: PropTypes.bool.isR
+// }
 
 export default LetterOption;
