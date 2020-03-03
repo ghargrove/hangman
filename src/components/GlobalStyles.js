@@ -1,15 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-import catamaranWoff from '../fonts/Catamaran-Regular.woff';
-import catamaranWoff2 from '../fonts/Catamaran-Regular.woff2';
-
 const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: Catamaran;
-    src: url(${catamaranWoff}) format('woff'),
-      url(${catamaranWoff2}) format('woff2');
-  }
-
   * {
     margin: 0;
     padding: 0;

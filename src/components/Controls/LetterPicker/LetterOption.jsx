@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 const LetterOption = styled.div`
   box-shadow: 2px 2px 5px #c9c9c9;
   color: #181719;
-  font-family: 'Catamaran';
+  line-height: ${props => props.theme.fontSize.xlarge};
   text-align: center;
   transition: background 0.3s, color 0.3s;
 
