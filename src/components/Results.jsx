@@ -1,7 +1,7 @@
 import React from 'react';
 
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { guessStats } from '../guessHelpers';
 import { useRandomWord } from '../hooks';
@@ -11,7 +11,17 @@ import { Button, PrimaryHeadline, SecondaryText } from './Generic';
 const ResultsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 0.5rem;
+
+  ${({ theme: { colors, spacing } }) => css`
+    h2,
+    p {
+      margin-bottom: ${spacing.medium};
+    }
+
+    strong {
+      color: ${colors.alert};
+    }
+  `}
 `;
 
 const Results = ({ selectedLetters, onReset }) => {
@@ -38,8 +48,8 @@ const Results = ({ selectedLetters, onReset }) => {
               {didWin ? 'Congrats you won!' : 'Better luck next time!'}
             </PrimaryHeadline>
             {didLose && (
-              <SecondaryText style={{ textAlign: 'center' }}>
-                The word was: {randomWord.join('')}
+              <SecondaryText alignCenter>
+                The word was: <strong>{randomWord.join('')}</strong>
               </SecondaryText>
             )}
             <Button onClick={handleReset}>Play again</Button>
