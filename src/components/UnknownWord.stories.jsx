@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useRandomWord } from '../hooks';
+import { alphabet } from '../letters';
 import RandomWordProvider from './RandomWordProvider';
 import UnknownWord from './UnknownWord';
 
@@ -15,7 +16,7 @@ export const unfilledWord = () => <UnknownWord selectedLetters={[]} />;
 // Remove a few letters from the random
 const PartialWord = () => {
   const { randomWord } = useRandomWord();
-  const letters = new Set('ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''));
+  const letters = new Set(alphabet);
   letters.delete(randomWord[0]);
   letters.delete(randomWord[1]);
   return <UnknownWord selectedLetters={Array.from(letters)} />;
@@ -23,6 +24,4 @@ const PartialWord = () => {
 
 export const partiallyFilledWord = () => <PartialWord />;
 
-export const filledWord = () => (
-  <UnknownWord selectedLetters={'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')} />
-);
+export const filledWord = () => <UnknownWord selectedLetters={alphabet} />;

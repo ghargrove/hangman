@@ -6,7 +6,6 @@ import { PrimaryHeadline, SecondaryText } from './Generic';
 
 const DirectionsContainer = styled.div`
   grid-column: 1 / -1;
-  text-align: center;
   margin-bottom: ${props => props.theme.spacing.medium};
 
   p {
@@ -20,8 +19,8 @@ const DirectionsContainer = styled.div`
 
 const Directions = () => (
   <DirectionsContainer>
-    <PrimaryHeadline>React Hangman</PrimaryHeadline>
-    <SecondaryText>
+    <PrimaryHeadline alignCenter>React Hangman</PrimaryHeadline>
+    <SecondaryText alignCenter>
       Select some letters... <strong>Solve the puzzle</strong>!
     </SecondaryText>
   </DirectionsContainer>

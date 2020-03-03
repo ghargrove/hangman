@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import { useRandomWord } from '../../../hooks';
 import { guessStats } from '../../../guessHelpers';
+import { alphabet } from '../../../letters';
 import { SecondaryText } from '../../Generic';
 import LetterGrid from './LetterGrid';
 import LetterOption from './LetterOption';
@@ -17,8 +18,10 @@ const RemainingGuessCount = styled(SecondaryText)`
   margin-bottom: ${props => props.theme.spacing.medium};
 `;
 
-const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-
+/**
+ * Renders a control that allows users to select letters by
+ * clicking on them.
+ */
 const LetterPicker = ({ onLetterSelection, selectedLetters }) => {
   const { randomWord } = useRandomWord();
 
@@ -43,7 +46,7 @@ const LetterPicker = ({ onLetterSelection, selectedLetters }) => {
         Remaining guesses: <strong>{numberOfGuessesRemaining}</strong>
       </RemainingGuessCount>
       <LetterGrid>
-        {alpha.map((letter, i) => {
+        {alphabet.map((letter, i) => {
           const isSelected = selectedLetters[letter] !== undefined;
           return (
             <LetterOption

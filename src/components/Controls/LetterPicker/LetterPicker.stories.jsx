@@ -10,9 +10,12 @@ export default {
 };
 
 const PickerWithState = () => {
-  const [selectedLetters, setSelectedLetters] = useState([]);
+  const [selectedLetters, setSelectedLetters] = useState({});
   const handleLetterSelection = letter =>
-    setSelectedLetters(prevLetters => [...prevLetters, letter]);
+    setSelectedLetters(prevLetters => ({
+      ...prevLetters,
+      ...letter,
+    }));
   return (
     <LetterPicker
       selectedLetters={selectedLetters}
