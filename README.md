@@ -2,6 +2,15 @@
 
 This application is a hangman game designed to demonstrate my React skills!
 
+## 💎 Features
+
+- ✅ Challenging unknown word
+- ✅ Letter picker input mechanism that provides feedback on if the letter exists in the unknown word
+- ✅ Remaining guess count
+- ✅ Pop up to let you know the outcome of the game
+- ✅ Reset game button
+- ✅ Responsive
+
 ## 🔨 Development
 
 This application was built using Node v12.16.0. There is an accompanying `.node-version` file.
@@ -29,7 +38,7 @@ Or you can use the `serve` command in `package.json`
 
     npm run serve
 
-## Design decisions
+## 🤔 Design decisions
 
 I really like the readability that [styled-components](https://styled-components.com/) provides so I opted for that approach instead of css files.
 
