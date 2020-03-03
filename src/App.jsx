@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 
 import { LetterPicker } from './components/Controls';
+import Directions from './components/Directions';
+import Footer from './components/Footer';
 import Layout from './components/Layout';
 import RandomWordProvider from './components/RandomWordProvider';
 import Results from './components/Results';
@@ -27,6 +29,7 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <Layout>
+          <Directions />
           <TheGallows selectedLetters={selectedLetters} />
           <div>
             <LetterPicker
@@ -34,11 +37,9 @@ const App = () => {
               selectedLetters={selectedLetters}
             />
           </div>
-          <Results
-            onReset={handleGameReset}
-            selectedLetters={selectedLetters}
-          />
+          <Footer />
         </Layout>
+        <Results onReset={handleGameReset} selectedLetters={selectedLetters} />
       </ThemeProvider>
     </RandomWordProvider>
   );

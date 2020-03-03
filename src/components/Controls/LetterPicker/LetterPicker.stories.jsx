@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import RandomWordProvider from '../RandomWordProvider';
+import RandomWordProvider from '../../RandomWordProvider';
 import LetterPicker from './LetterPicker';
 
 export default {

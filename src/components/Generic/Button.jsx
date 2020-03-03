@@ -2,17 +2,17 @@ import styled from 'styled-components';
 
 const Button = styled.button`
   border: none;
-  color: green;
+  color: ${props => props.theme.colors.green};
   font-family: 'Catamaran';
-  font-size: 1rem;
+  font-size: ${props => props.theme.fontSize.medium};
   font-weight: 700;
-  padding: 1rem;
+  padding: ${props => props.theme.spacing.medium};
   outline: none;
   text-transform: uppercase;
   transition: background 0.3s;
 
   :hover {
-    background-color: #efefef;
+    background-color: ${props => props.theme.colors.gray.lightest};
     cursor: pointer;
   }
 `;
