@@ -24,6 +24,10 @@ const ResultsWrapper = styled.div`
   `}
 `;
 
+/**
+ * Displays a modal indicating whether user won or lost the game.
+ * Also allows the user to reset the game.
+ */
 const Results = ({ selectedLetters, onReset }) => {
   const { changeRandomWord, randomWord } = useRandomWord();
   const { numberOfGuessesRemaining, numberOfUnknownLetters } = guessStats({
