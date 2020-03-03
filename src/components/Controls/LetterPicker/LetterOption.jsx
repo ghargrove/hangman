@@ -6,6 +6,7 @@ const LetterOption = styled.div`
   line-height: ${props => props.theme.fontSize.xlarge};
   text-align: center;
   transition: background 0.3s, color 0.3s;
+  user-select: none;
 
   ${({ theme: { colors, fontSize } }) => css`
     border-top: solid 1px ${colors.gray.lightest};
