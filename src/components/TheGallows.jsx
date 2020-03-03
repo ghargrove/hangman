@@ -31,7 +31,7 @@ const HangmanContainer = styled.div`
 const TheGallows = ({ selectedLetters }) => {
   const { randomWord } = useRandomWord();
   const { numberOfIncorrectGuesses } = guessStats({
-    selectedLetters,
+    selectedLetters: Object.keys(selectedLetters),
     unknownWordLetters: randomWord,
   });
 
@@ -46,7 +46,7 @@ const TheGallows = ({ selectedLetters }) => {
 };
 
 TheGallows.propTypes = {
-  selectedLetters: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selectedLetters: PropTypes.objectOf(PropTypes.bool).isRequired,
 };
 
 export default TheGallows;

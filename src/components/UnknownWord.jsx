@@ -25,19 +25,17 @@ const UnknownWordText = styled(PrimaryText)`
  * ```
  *
  */
-const UnknownWord = ({ randomWord, selectedLetters }) => {
-  return (
-    <UnknownWordText>
-      {randomWord
-        .map(letter => (selectedLetters.includes(letter) ? letter : '-'))
-        .join('')}
-    </UnknownWordText>
-  );
-};
+const UnknownWord = ({ randomWord, selectedLetters }) => (
+  <UnknownWordText>
+    {randomWord
+      .map(letter => (selectedLetters[letter] ? letter : '-'))
+      .join('')}
+  </UnknownWordText>
+);
 
 UnknownWord.propTypes = {
   randomWord: PropTypes.arrayOf(PropTypes.string).isRequired,
-  selectedLetters: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selectedLetters: PropTypes.objectOf(PropTypes.bool).isRequired,
 };
 
 export default UnknownWord;

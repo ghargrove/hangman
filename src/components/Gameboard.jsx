@@ -23,7 +23,7 @@ const Gameboard = () => {
 
   return (
     <React.Fragment>
-      <TheGallows selectedLetters={Object.keys(selectedLetters)} />
+      <TheGallows selectedLetters={selectedLetters} />
       <LetterPicker
         onLetterSelection={handleLetterSelection}
         selectedLetters={selectedLetters}
