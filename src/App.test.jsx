@@ -15,15 +15,48 @@ it('decreases the remaining guesses count after an incorrect guess', async () =>
 });
 
 it('shows a success message after the user guesses the word', async () => {
-  const { getByTestId, getByText } = render(<App testWord="spec" />, {
-    container: document.body,
-  });
-  expect(getByTestId('remaining-guesses')).toHaveTextContent('10');
+  const { getByTestId, getByText } = render(<App testWord="spec" />);
 
-  ['S', 'P', 'E', 'C'].forEach(async letter => {
+  'SPEL'.split('').forEach(letter => fireEvent.click(getByText(letter)));
+  await waitForElement(() => getByTestId('remaining-guesses'));
+
+  // Make sure the count decreases
+  expect(
+    await waitForElement(() => getByTestId('remaining-guesses'))
+  ).toHaveTextContent('9');
+
+  fireEvent.click(getByText('C'));
+  await waitForElement(() => getByTestId('remaining-guesses'));
+
+  // Verify success message
+  expect(getByTestId('game-result')).toHaveTextContent('Congrats you won!');
+
+  // Reset the board
+  fireEvent.click(getByText('Play again'));
+
+  // Make sure the count is reset
+  expect(
+    await waitForElement(() => getByTestId('remaining-guesses'))
+  ).toHaveTextContent('10');
+});
+
+it('shows a sorry message after the user loses', async () => {
+  const { getByTestId, getByText } = render(<App testWord="spec" />);
+
+  'ABDFGHIJKL'.split('').forEach(letter => {
     fireEvent.click(getByText(letter));
-    await waitForElement(() => getByTestId('remaining-guesses'));
   });
 
-  expect(getByTestId('remaining-guesses')).toHaveTextContent('9');
+  // Verify success message
+  expect(getByTestId('game-result')).toHaveTextContent(
+    'Better luck next time!'
+  );
+
+  // Reset the board
+  fireEvent.click(getByText('Play again'));
+
+  // Make sure the count is reset
+  expect(
+    await waitForElement(() => getByTestId('remaining-guesses'))
+  ).toHaveTextContent('10');
 });

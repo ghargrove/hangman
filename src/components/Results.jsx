@@ -44,7 +44,7 @@ const Results = ({ selectedLetters, onReset }) => {
       {(didWin || didLose) && (
         <Modal>
           <ResultsWrapper>
-            <PrimaryHeadline>
+            <PrimaryHeadline data-testid="game-result">
               {didWin ? 'Congrats you won!' : 'Better luck next time!'}
             </PrimaryHeadline>
             {didLose && (
