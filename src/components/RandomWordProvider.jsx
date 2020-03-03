@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
-import randomWords from 'random-words';
+
+import { getRandomWord } from '../randomWord';
 
 // Store the random word
 export const RandomWordContext = React.createContext();
 
 // Get a random word and split into an array of uppercase letters
 const randomWordLetters = testWord =>
-  (testWord === undefined ? randomWords() : testWord).toUpperCase().split('');
+  (testWord === undefined ? getRandomWord() : testWord).toUpperCase().split('');
 
 const RandomWordProvider = ({ children, testWord }) => {
   const [randomWord, setRandomWord] = useState(randomWordLetters(testWord));
