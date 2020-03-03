@@ -1,57 +1,40 @@
-# hangman
+# Hangman
 
-Implement the classic [Hangman
-game](<https://en.wikipedia.org/wiki/Hangman_(game)>) in React.
+This application is a hangman game designed to demonstrate my React skills!
 
-Feel free to use any tools and techniques that you would use in your
-day-to-day development.
+## 🔨 Development
 
-## Instructions
+This application was built using Node v12.16.0. There is an accompanying `.node-version` file.
 
-1. Generate a new **private** repo using this template repo.
-2. Provide your answers to your generated repo.
-3. Once your repo is ready for review, add `voleer-dev` as a collaborator for your repo.
-4. Wait for our response.
+    npm install
+    npm start
 
-## Requirements
+## 👩‍🔬 Testing
 
-- Generate a random word for the player to guess
-- Provide a mechanism for the player to input their letter guesses
-- When the player guesses a letter it should reveal matching instances of
-  that letter in the word
-- The game is won if the player is able to correctly guess all of the letters
-  in the word before making 10 incorrect guesses
-- If the player has guessed 10 times without revealing the word, the game is
-  lost
+    npm run lint
+    npm run test
 
-The UI should include the following, but feel free to add more if you see the
-need or would like to get creative.
+If you'd like to view components in storybook
 
-- A masked version of the word, with correct guesses revealed
-  - For example, if the word is “voleer” and the player has guessed the
-    letter “e” then the word should be displayed as: \_ \_ _ E E _
-- An input mechanism of some kind which allows the player to input their next guess
-- An indication of which letters the player has already guessed incorrectly
-- An indication of how many remaining incorrect guesses the player has before
-  the game is over
-- An indication of win/loss state when the game is over
-- The ability to start a new game once the game is over
+    npm run storybook
 
-## Included
+## 📦 Production
 
-The following items are included in the base application. Please feel free to
-add additional libraries or tools if you feel they would help.
+This application uses [react-snap](https://www.npmjs.com/package/react-snap) for server side rendering. There is an [express](https://expressjs.com/) server that will serve the application at [http://localhost:3001](http://localhost:3001)
 
-- Create React App
+    npm run build
+    node server.js
 
-  - If needed, the original Create React App README is saved
-    [here](README_CRA.md) for reference
-  - We don't anticipate that you'll need enough additional configuration to
-    require ejecting, but feel free to do so if it helps
+Or you can use the `serve` command in `package.json`
 
-- Component to draw the Hangman
-  ([src/components/Hangman/Hangman.jsx](src/components/Hangman/Hangman.jsx))
+    npm run serve
 
-- React Storybook
-  - Run using `npm run storybook` to see already implemented components, or
-    write your own stories to help you implement your solution
+## Design desicions
+
+I really like the readability that [styled-components](https://styled-components.com/) provides so I opted for that approach instead of css files.
+
+I tried to make use of a few different React features such as context (`RandomWordProvider`) and portals (`Modal`). Putting the random word in context may have been a little overkill in this instance due to the relatively small number of components, but it allowed me to demonstrate building custom hooks as well.
+
+Generally I try to keep generic design system components (`Button`, `Link`) togeather. Those components can all be found under `src/components/Generic`.
+
+When creating components that don't have use outside of a single component, I tend to leave them in the same file. I'll usually move them to a subdirectory (such as `src/components/Controls/LetterPicker`) if the component begins to grow in complexity or I end up a whole bunch of single use components.
