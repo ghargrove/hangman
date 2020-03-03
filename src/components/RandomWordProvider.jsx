@@ -7,14 +7,12 @@ import randomWords from 'random-words';
 export const RandomWordContext = React.createContext();
 
 // Get a random word and split into an array of uppercase letters
-const randomWordLetters = () =>
-  randomWords()
-    .toUpperCase()
-    .split('');
+const randomWordLetters = testWord =>
+  (testWord === undefined ? randomWords() : testWord).toUpperCase().split('');
 
-const RandomWordProvider = ({ children }) => {
-  const [randomWord, setRandomWord] = useState(randomWordLetters());
-  const changeRandomWord = () => setRandomWord(randomWordLetters());
+const RandomWordProvider = ({ children, testWord }) => {
+  const [randomWord, setRandomWord] = useState(randomWordLetters(testWord));
+  const changeRandomWord = () => setRandomWord(randomWordLetters(testWord));
   return (
     <RandomWordContext.Provider
       value={{
@@ -29,6 +27,7 @@ const RandomWordProvider = ({ children }) => {
 
 RandomWordProvider.propTypes = {
   children: PropTypes.node.isRequired,
+  testWord: PropTypes.string,
 };
 
 export default RandomWordProvider;

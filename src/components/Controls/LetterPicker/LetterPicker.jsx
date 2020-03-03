@@ -43,7 +43,10 @@ const LetterPicker = ({ onLetterSelection, selectedLetters }) => {
   return (
     <LetterPickerContainer>
       <RemainingGuessCount alignRight>
-        Remaining guesses: <strong>{numberOfGuessesRemaining}</strong>
+        Remaining guesses:{' '}
+        <strong data-testid="remaining-guesses">
+          {numberOfGuessesRemaining}
+        </strong>
       </RemainingGuessCount>
       <LetterGrid>
         {alphabet.map((letter, i) => {
