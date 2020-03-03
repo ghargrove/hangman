@@ -22,13 +22,30 @@ const HangmanContainer = styled.div`
   width: 400px;
 `;
 
+const WinLossRecord = styled.div`
+  display: flex;
+  justify-content: flex-end;
+
+  span:last-of-type {
+    margin-left: ${props => props.theme.spacing.medium};
+  }
+
+  #win-label {
+    color: ${props => props.theme.colors.green};
+  }
+
+  #loss-label {
+    color: ${props => props.theme.colors.alert};
+  }
+`;
+
 /**
  * Renders the "Hangman" along with an unknown word where
  * letters are replaced by underscores until they're guessed
  * by the user
  */
 
-const TheGallows = ({ selectedLetters }) => {
+const TheGallows = ({ selectedLetters, winLossRecord }) => {
   const { randomWord } = useRandomWord();
   const { numberOfIncorrectGuesses } = guessStats({
     selectedLetters: Object.keys(selectedLetters),
@@ -45,11 +62,20 @@ const TheGallows = ({ selectedLetters }) => {
           <Hangman incorrectGuessCount={numberOfIncorrectGuesses}></Hangman>
         )}
       </HangmanContainer>
+      <WinLossRecord>
+        <span id="win-label">
+          <strong>Wins:</strong> {winLossRecord.wins}
+        </span>
+        <span id="loss-label">
+          <strong>Loses:</strong> {winLossRecord.losses}
+        </span>
+      </WinLossRecord>
     </GallowsContainer>
   );
 };
 
 TheGallows.propTypes = {
+  winLossRecord: PropTypes.objectOf(PropTypes.number).isRequired,
   selectedLetters: PropTypes.objectOf(PropTypes.bool).isRequired,
 };
 
