@@ -3,6 +3,12 @@
  */
 
 const theme = {
+  breakpoints: {
+    small: 576,
+    medium: 768,
+    large: 992,
+    xlarge: 1200,
+  },
   colors: {
     primary: '#2D99C4',
     gray: {

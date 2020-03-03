@@ -5,13 +5,22 @@ import styled, { css } from 'styled-components';
 
 import { useRandomWord } from '../../hooks';
 import { guessStats } from '../../guessHelpers';
-import { PrimaryHeadline } from '../Generic';
+import { SecondaryText } from '../Generic';
+import { onMediumScreens } from '../Layout';
 
 const LetterGrid = styled.div`
   cursor: pointer;
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(4, 1fr);
+
+  ${onMediumScreens(css`
+    grid-template-columns: repeat(3, 1fr);
+  `)}
+`;
+
+const LetterPickerContainer = styled.div`
+  padding: ${props => props.theme.spacing.medium};
 `;
 
 const Letter = styled.div`
@@ -59,11 +68,9 @@ const Letter = styled.div`
     `}
 `;
 
-const LetterPickerHeader = styled.header`
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
+const RemainingGuessCount = styled(SecondaryText)`
   margin-bottom: ${props => props.theme.spacing.medium};
+  text-align: right;
 `;
 
 const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
@@ -85,11 +92,10 @@ const LetterPicker = ({ onLetterSelection, selectedLetters }) => {
   });
 
   return (
-    <div style={{ padding: '1rem' }}>
-      <LetterPickerHeader>
-        <PrimaryHeadline>Choose a letter:</PrimaryHeadline>
-        <span>Remaining guesses: {numberOfGuessesRemaining}</span>
-      </LetterPickerHeader>
+    <LetterPickerContainer>
+      <RemainingGuessCount>
+        Remaining guesses: <strong>{numberOfGuessesRemaining}</strong>
+      </RemainingGuessCount>
       <LetterGrid>
         {alpha.map((letter, i) => (
           <Letter
@@ -106,7 +112,7 @@ const LetterPicker = ({ onLetterSelection, selectedLetters }) => {
           </Letter>
         ))}
       </LetterGrid>
-    </div>
+    </LetterPickerContainer>
   );
 };
 
