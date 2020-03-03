@@ -11,13 +11,22 @@ export default {
 const randomWord = 'HELLO'.split('');
 
 export const unfilledWord = () => (
-  <UnknownWord randomWord={randomWord} selectedLetters={[]} />
+  <UnknownWord randomWord={randomWord} selectedLetters={{}} />
 );
 
 export const partiallyFilledWord = () => (
-  <UnknownWord randomWord={randomWord} selectedLetters={['X', 'L']} />
+  <UnknownWord
+    randomWord={randomWord}
+    selectedLetters={{ X: false, L: true }}
+  />
 );
 
 export const filledWord = () => (
-  <UnknownWord randomWord={randomWord} selectedLetters={alphabet} />
+  <UnknownWord
+    randomWord={randomWord}
+    selectedLetters={alphabet.reduce(
+      (m, letter) => ({ ...m, [letter]: true }),
+      {}
+    )}
+  />
 );
