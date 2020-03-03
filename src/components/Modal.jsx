@@ -4,8 +4,6 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-// const modalRoot = document.querySelector('#modal');
-
 const ModalContainer = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.4);
