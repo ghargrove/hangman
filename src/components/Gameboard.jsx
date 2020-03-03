@@ -19,7 +19,6 @@ const Gameboard = () => {
       ...prevLetters,
       ...newLetter,
     }));
-
   const handleGameReset = () => setSelectedLetters({});
 
   return (
