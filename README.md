@@ -9,6 +9,7 @@ This application is a hangman game designed to demonstrate my React skills!
 - ✅ Remaining guess count
 - ✅ Pop up to let you know the outcome of the game
 - ✅ Reset game button
+- ✅ Track number of wins and losses
 - ✅ Responsive
 
 ## 🔨 Development
