@@ -29,7 +29,7 @@ Or you can use the `serve` command in `package.json`
 
     npm run serve
 
-## Design desicions
+## Design decisions
 
 I really like the readability that [styled-components](https://styled-components.com/) provides so I opted for that approach instead of css files.
 
@@ -38,5 +38,7 @@ I tried to make use of a few different React features such as context (`RandomWo
 Generally I try to keep generic design system components (`Button`, `Link`) togeather. Those components can all be found under `src/components/Generic`.
 
 When creating components that don't have use outside of a single component, I tend to leave them in the same file. I'll usually move them to a subdirectory (such as `src/components/Controls/LetterPicker`) if the component begins to grow in complexity or I end up a whole bunch of single use components.
+
+To keep track of state I put `selectedLetters` in the `<Gameboard>` and `randomWord` in `<RandomWordProvider>`. All other data is derived from that state.
 
 For testing I chose to test the application as a whole rather than each component individually. The `testWord` prop on `<App />` is to allow ease of testing.
