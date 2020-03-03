@@ -22,9 +22,12 @@ const HangmanContainer = styled.div`
   width: 400px;
 `;
 
-// Renders the "Hangman" along with an unknown word where
-// letters are replaced by underscores until they're guessed
-// by the user
+/**
+ * Renders the "Hangman" along with an unknown word where
+ * letters are replaced by underscores until they're guessed
+ * by the user
+ */
+
 const TheGallows = ({ selectedLetters }) => {
   const { randomWord } = useRandomWord();
   const { numberOfIncorrectGuesses } = guessStats({
@@ -34,7 +37,7 @@ const TheGallows = ({ selectedLetters }) => {
 
   return (
     <GallowsContainer>
-      <UnknownWord selectedLetters={selectedLetters} />
+      <UnknownWord randomWord={randomWord} selectedLetters={selectedLetters} />
       <HangmanContainer>
         <Hangman incorrectGuessCount={numberOfIncorrectGuesses}></Hangman>
       </HangmanContainer>

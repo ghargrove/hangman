@@ -1,10 +1,9 @@
 import React from 'react';
 
-import PropsTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
 import { PrimaryText } from '../components/Generic';
-import { useRandomWord } from '../hooks';
 
 const UnknownWordText = styled(PrimaryText)`
   background-color: white;
@@ -22,12 +21,11 @@ const UnknownWordText = styled(PrimaryText)`
  * not included in `selectedLetters`
  *
  * ```javascript
- * <UnknownWord selectedLetters=['a', 'f', 'm'] />
+ * <UnknownWord randomWord={['s', 'p', 'e', 'c']} selectedLetters=['a', 'f', 'm'] />
  * ```
  *
  */
-const UnknownWord = ({ selectedLetters }) => {
-  const { randomWord } = useRandomWord();
+const UnknownWord = ({ randomWord, selectedLetters }) => {
   return (
     <UnknownWordText>
       {randomWord
@@ -38,7 +36,8 @@ const UnknownWord = ({ selectedLetters }) => {
 };
 
 UnknownWord.propTypes = {
-  selectedLetters: PropsTypes.arrayOf(PropsTypes.string).isRequired,
+  randomWord: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selectedLetters: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default UnknownWord;

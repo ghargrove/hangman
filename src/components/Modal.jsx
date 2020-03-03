@@ -8,7 +8,7 @@ const modalRoot = document.querySelector('#modal');
 
 const ModalContainer = styled.div`
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   height: 100%;
   justify-content: center;
@@ -20,12 +20,11 @@ const ModalContainer = styled.div`
 
 const InnerModal = styled.div`
   background-color: white;
-  padding: 1rem;
+  padding: ${props => props.theme.spacing.medium};
 `;
 
 const Modal = ({ children }) => {
   const el = document.createElement('div');
-
   useEffect(() => {
     modalRoot.appendChild(el);
     return () => modalRoot.removeChild(el);
