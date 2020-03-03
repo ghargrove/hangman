@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { ThemeProvider } from 'styled-components';
+import PropTypes from 'prop-types';
 
 import Directions from './components/Directions';
 import Footer from './components/Footer';
@@ -11,8 +13,8 @@ import theme from './theme';
 
 import GlobalStyles from './components/GlobalStyles';
 
-const App = () => (
-  <RandomWordProvider>
+const App = ({ testWord }) => (
+  <RandomWordProvider testWord={testWord}>
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Layout>
@@ -23,5 +25,9 @@ const App = () => (
     </ThemeProvider>
   </RandomWordProvider>
 );
+
+App.propTypes = {
+  testWord: PropTypes.string,
+};
 
 export default App;

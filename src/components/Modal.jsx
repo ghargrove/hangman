@@ -4,8 +4,6 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const modalRoot = document.querySelector('#modal');
-
 const ModalContainer = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.4);
@@ -24,17 +22,19 @@ const InnerModal = styled.div`
 `;
 
 const Modal = ({ children }) => {
-  const el = document.createElement('div');
+  const modalRoot = document.createElement('div');
+  modalRoot.id = 'modal';
+
   useEffect(() => {
-    modalRoot.appendChild(el);
-    return () => modalRoot.removeChild(el);
-  }, [el]);
+    document.body.appendChild(modalRoot);
+    return () => modalRoot.parentNode.removeChild(modalRoot);
+  }, [modalRoot]);
 
   return ReactDOM.createPortal(
     <ModalContainer>
       <InnerModal>{children}</InnerModal>
     </ModalContainer>,
-    el
+    modalRoot
   );
 };
 

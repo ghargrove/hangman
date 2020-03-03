@@ -35,11 +35,15 @@ const TheGallows = ({ selectedLetters }) => {
     unknownWordLetters: randomWord,
   });
 
+  // js-dom doesn't support canvas by default so don't render the
+  // hangman in test mode
   return (
     <GallowsContainer>
       <UnknownWord randomWord={randomWord} selectedLetters={selectedLetters} />
       <HangmanContainer>
-        <Hangman incorrectGuessCount={numberOfIncorrectGuesses}></Hangman>
+        {process.env.NODE_ENV !== 'test' && (
+          <Hangman incorrectGuessCount={numberOfIncorrectGuesses}></Hangman>
+        )}
       </HangmanContainer>
     </GallowsContainer>
   );
