@@ -1,6 +1,6 @@
 # Hangman
 
-This application is a hangman game designed to demonstrate my React skills!
+This application is a hangman game designed to demonstrate my React skills! The words were scraped from wikipedia so there may be some names and other oddities.
 
 ## 💎 Features
 
